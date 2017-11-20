@@ -1,7 +1,8 @@
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.test import TestCase
 
-from app.models import Product
+from app2.models import Product
 
 
 class ProductTest(TestCase):
@@ -42,4 +43,18 @@ class ProductTest(TestCase):
         }
         Product.objects.create(**data)
         product = Product.objects.all().first()
+        self.assertIsInstance(product.content, dict)
+
+    def test_04(self):
+        data = {
+            'name': 'A',
+            'price': 1,
+            'content': {
+                'name': 'A',
+                'price': 1,
+            },
+        }
+        Product.objects.create(**data)
+        q = Q(content__name='A')
+        product = Product.objects.filter(q).first()
         self.assertIsInstance(product.content, dict)
