@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-VERSION = '0.2.0'
+VERSION = '0.2.1'
 PATH = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -24,7 +24,7 @@ setup(
     author_email='h_yp00@163.com',
     license='MIT',
     packages=find_packages(exclude=['docs', 'tests*', 'example']),
-    requires=install_requires,
+    install_requires=install_requires,
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
